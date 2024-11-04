@@ -1,0 +1,13 @@
+{
+  "name": "matrix-code-flood",
+  "version": "1.0.0",
+  "description": "A website that floods the screen with Matrix code.",
+  "main": "index.html",
+  "scripts": {
+    "start": "gulp"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "browser-sync": "^2.27.7"
+  }
+}

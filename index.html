@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Code Flooding</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            background-color: black; /* Black background */
+            color: #00ff00; /* Green text color */
+            font-family: 'Courier New', Courier, monospace; /* Monospace font for code */
+        }
+
+        .falling-code {
+            position: absolute;
+            white-space: nowrap; /* Prevent wrapping */
+            font-size: 20px; /* Font size of the code */
+            opacity: 0.9; /* Opacity for visibility */
+            animation: fall linear infinite; /* Animation for falling */
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0); /* Start at the top */
+            }
+            100% {
+                transform: translateY(100vh); /* End at the bottom of the viewport */
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Characters used in the code
+        const columns = 20; // Number of columns of falling code
+
+        // Function to create a falling code character
+        function createFallingCharacter(index) {
+            const code = document.createElement('div');
+            code.className = 'falling-code'; // Add falling-code class
+            code.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+            code.style.animationDuration = `${Math.random() * 3 + 2}s`; // Random fall duration between 2 and 5 seconds
+            code.innerHTML = characters.charAt(Math.floor(Math.random() * characters.length)); // Random character
+
+            document.body.appendChild(code); // Append the character to the body
+
+            // Remove the character after it falls to avoid cluttering the DOM
+            code.addEventListener('animationend', () => {
+                code.remove();
+            });
+        }
+
+        // Create a character every 100 milliseconds
+        setInterval(() => {
+            for (let i = 0; i < columns; i++) {
+                createFallingCharacter(i);
+            }
+        }, 100);
+    </script>
+</body>
+</html>
